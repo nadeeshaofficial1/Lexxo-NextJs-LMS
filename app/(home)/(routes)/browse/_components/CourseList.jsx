@@ -1,5 +1,3 @@
-import { Book, Youtube, YoutubeIcon } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import CategoryItem from './../../../_components/CategoryItem'

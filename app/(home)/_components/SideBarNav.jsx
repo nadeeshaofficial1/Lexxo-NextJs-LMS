@@ -33,6 +33,18 @@ function SideBarNav({toggleSideBar}) {
             icon:Mail,
             path:'/newsletter'
         },
+        {
+            id:4,
+            name:'Newsletter',
+            icon:Mail,
+            path:'/newsletter'
+        },
+        {
+            id:4,
+            name:'Newsletter',
+            icon:Mail,
+            path:'/newsletter'
+        },
     ]
     const [activeIndex,setActiveIndex]=useState(0);
   return (

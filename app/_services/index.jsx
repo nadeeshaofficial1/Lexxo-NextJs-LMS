@@ -1,6 +1,6 @@
 import request, { gql } from "graphql-request"
 
-const MASTER_URL="https://api-us-east-1-shared-usea1-02.hygraph.com/v2/cloc96djln47101t292o7glyo/master"
+const MASTER_URL="https://api-ap-south-1.hygraph.com/v2/"+process.env.NEXT_PUBLIC_HYGRAPH_KEY+"/master"
 
 export const getCourseList=async()=>{
     const query=gql`
@@ -12,14 +12,10 @@ export const getCourseList=async()=>{
           }
           free
           id
-          author
           totalChapters
           tag
-          youtubeUrl
-          demoUrl
-          sourceCode
         }
-      }    
+      }
     `
     const result=await request(MASTER_URL,query);
     return result;
@@ -33,21 +29,13 @@ export const getCourseById=async(id,userEmail)=>{
         ... on Chapter {
           id
           name
-          chapterNumber
-          video {
-            url
-          }
         }
       }
       description
       name
       id
       free
-      author
-      sourceCode
-      demoUrl
       totalChapters
-      youtubeUrl
       banner {
         url
       }
@@ -135,10 +123,8 @@ export const GetUserCourseList=async(userEmail)=>{
         name
         id
         free
-        sourceCode
         tag
         totalChapters
-        author
       }
     }
   }

@@ -11,34 +11,34 @@ function CategoryFilter({selectedCategory}) {
         },
         {
             id:2,
-            name:'React Js',
-            value:'reactjs'
+            name:'Sinhala',
+            value:'sinhala'
         },
         {
             id:3,
-            name:'Next Js',
-            value:'nextjs'
+            name:'History',
+            value:'history'
         },
         {
             id:4,
-            name:'Tailwind Css',
-            value:'tailwindcss'
+            name:'Mathematics',
+            value:'mathematics'
         },
         {
             id:5,
-            name:'Firebase',
-            value:'firebase'
+            name:'Health',
+            value:'health'
         },
         {
             id:6,
-            name:'Google Map',
-            value:'googlemapapi'
+            name:'Science',
+            value:'science'
         }
     ]
   return (
     <div className='flex gap-5'>
         {filterOptions.map((item,index)=>(
-            <button key={index} 
+            <button key={index}
             onClick={()=>
                 {setActiveIndex(index);
                 selectedCategory(item.value)}}

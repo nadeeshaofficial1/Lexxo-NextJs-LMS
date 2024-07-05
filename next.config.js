@@ -4,7 +4,7 @@ const nextConfig = {
         return [
           {
             source: '/',
-            destination: '/browse', // Replace with the actual path of your default page
+            destination: '/browse',
           },
         ];
       },
