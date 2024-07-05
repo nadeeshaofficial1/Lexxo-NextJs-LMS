@@ -12,7 +12,6 @@ export const getCourseList=async()=>{
           }
           free
           id
-          totalChapters
           tag
         }
       }
@@ -25,8 +24,7 @@ export const getCourseById=async(id,userEmail)=>{
   const query=gql`
   query course {
     courseList(where: {id: "`+id+`"}) {
-      chapter (first: 30){
-        ... on Chapter {
+       {
           id
           name
         }
@@ -35,22 +33,14 @@ export const getCourseById=async(id,userEmail)=>{
       name
       id
       free
-      totalChapters
       banner {
         url
       }
-    }
-    userEnrollCourses(where: {courseId: "`+id+`", 
+    userEnrollCourses(where: {courseId: "`+id+`",
     userEmail: "`+userEmail+`"}) {
     courseId
     userEmail
     id
-    completedChapter {
-      ... on CompletedChapter {
-        chapterId
-      }
-    }
-    
   }
   }
   `
@@ -65,7 +55,7 @@ export const EnrollCourse=async(courseId,userEmail)=>{
     createUserEnrollCourse(data: {
       courseList: 
       {connect: {id: "`+courseId+`"}}
-      userEmail: "`+userEmail+`", 
+      userEmail: "`+userEmail+`",
       courseId: "`+courseId+`"}) {
       id
     }
@@ -74,43 +64,6 @@ export const EnrollCourse=async(courseId,userEmail)=>{
   const result=await request(MASTER_URL,mutationQuery);
   return result;
 }
-
-export const PublishCourse=async(id)=>{
-const mutationQuery=gql`
-mutation EnrollCourse {
-  publishUserEnrollCourse(where: {id: "`+id+`"})
-  {
-    id
-  }
-}
-`
-const result=await request(MASTER_URL,mutationQuery);
-  return result;
-}
-
-export const markChapterCompleted=async(recordId,chapterNumber)=>{
-  const mutationQuery=gql`
-  mutation MarkChapterComplete {
-    updateUserEnrollCourse(
-      where: {id: "`+recordId+`"}
-      data: {completedChapter: {create: {CompletedChapter: 
-        {data: {chapterId: "`+chapterNumber+`"}}}}}
-    ) {
-      id
-    }
-    publishManyUserEnrollCoursesConnection(to: PUBLISHED) {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-  }
-  `
-  const result=await request(MASTER_URL,mutationQuery);
-  return result;
-}
-
 export const GetUserCourseList=async(userEmail)=>{
   const query=gql`
   query UserCourseList {
@@ -124,7 +77,6 @@ export const GetUserCourseList=async(userEmail)=>{
         id
         free
         tag
-        totalChapters
       }
     }
   }

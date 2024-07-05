@@ -50,13 +50,7 @@ function FullVideoPlayer({userCourse, activeChapter }) {
                 onClick={()=>_markChapterCompleted()}>
                   <CheckCircle2/> <h2>Mark as Completed</h2> 
                 </button>:null}
-                {/* <button className=' text-purple-600
-                border border-purple-600
-                p-2 px-5 rounded-lg flex gap-2
-                hover:bg-purple-100'
-                >
-                  <XCircle/> <h2>Mark  InComplete</h2> 
-                </button>} */}
+                {}
             </div>
         </div>
     )
